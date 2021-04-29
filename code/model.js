@@ -14,6 +14,10 @@ class Model {
     return builder
   }
 
+  async insert() {
+    return await this.#getKnexBuilder().insert(...arguments)
+  }
+
   #getFetchBuilder(build){ // 不是 build 就是 where
     return this.#getKnexBuilder(
       build && (
