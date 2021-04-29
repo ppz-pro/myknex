@@ -15,9 +15,13 @@ class Model {
   }
 
   #getFetchBuilder(build){ // 不是 build 就是 where
-    return ! (build instanceof Function)
-      ? this.#getKnexBuilder( builder => builder.where(build) )
-      : this.#getKnexBuilder(build)
+    return this.#getKnexBuilder(
+      build && (
+        build instanceof Function
+          ? build
+          : builder => builder.where(build)
+      )
+    )
   }
 
   async fetch(build){
@@ -37,6 +41,39 @@ class Model {
 
   fetchById(id){ // 以后再升级为“指定主键”
     return this.fetchOne(id)
+  }
+
+  #populateMap = {}
+  hasMany({ model, leftKey = 'id', rightKey, populatedAs }) {
+    this.#populateMap[populatedAs] = {
+      model, leftKey, rightKey,
+      many: true
+    }
+  }
+  hasOne({ model, leftKey, rightKey = 'id', populatedAs }) {
+    this.#populateMap[populatedAs || leftKey] = {
+      model, leftKey, rightKey,
+      one: true
+    }
+  }
+  async #populateOne(record, name){
+    const target = this.#populateMap[name]
+    if(target.many)
+      record[name] = await target.model.fetch({
+        [target.rightKey]: record[target.leftKey]
+      })
+  }
+
+  async populate(data, name){
+    if(!data)
+      return Promise.resolve()
+    
+    if(!(data instanceof Array))
+      data = [data]
+    
+    await Promise.all(data.map( record => 
+      this.#populateOne(record, name)
+    ))
   }
 }
 
