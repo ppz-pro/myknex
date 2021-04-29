@@ -1,14 +1,23 @@
 {
   "name": "myknex",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
   },
   "keywords": [
-    "orm"
+    "orm", "knex", "sequelize", "bookshelf", "objection", "waterline", "typeorm"
   ],
   "author": "gy",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daGaiGuanYu/myknex.git"
+  },
+  "homepage": "https://github.com/daGaiGuanYu/myknex#readme",
+  "bugs": {
+    "url": "https://github.com/daGaiGuanYu/myknex/issues"
+  }
 }
