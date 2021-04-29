@@ -7,7 +7,7 @@ class Model {
     this.#tableName = tableName
   }
 
-  #getKnexBuilder(build) {
+  #getBaseBuilder(build) {
     const builder = getKnex()(this.#tableName)
     if(build)
       build(builder)
@@ -15,11 +15,11 @@ class Model {
   }
 
   async insert() {
-    return await this.#getKnexBuilder().insert(...arguments)
+    return await this.#getBaseBuilder().insert(...arguments)
   }
 
-  #getFetchBuilder(build){ // 不是 build 就是 where
-    return this.#getKnexBuilder(
+  #getFinalBuilder(build){ // 不是 build 就是 where
+    return this.#getBaseBuilder(
       build && (
         build instanceof Function
           ? build
@@ -29,7 +29,7 @@ class Model {
   }
 
   async fetch(build){
-    return await this.#getFetchBuilder(build)
+    return await this.#getFinalBuilder(build)
   }
 
   async fetchOne(build){
@@ -37,7 +37,7 @@ class Model {
       build = {
         id: build
       }
-    const builder = this.#getFetchBuilder(build)
+    const builder = this.#getFinalBuilder(build)
     builder.limit(1)
     const list = await builder
     return list[0]
