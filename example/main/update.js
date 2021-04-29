@@ -1,20 +1,13 @@
 require('./init')
-const { Model } = require('myknex')
+const { Model } = require('myknex') // myknex 核心
 
 const userModel = new Model('user')
 
 async function main(){
-  let result = await userModel.update({
-    name: 'lun'
+  const result = await userModel.update({
+    name: '小明'
   }, {
-    name: 'lunlun'
-  })
-  console.log(result)
-
-  result = await userModel.update( builder => {
-    builder.where('name', 'like', '%lun')
-  }, {
-    tel: 'lunlun phone'
+    name: '大明'
   })
   console.log(result)
 }
