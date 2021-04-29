@@ -18,6 +18,10 @@ class Model {
     return await this.#getBaseBuilder().insert(...arguments)
   }
 
+  async del(build){
+    return await this.#getFinalBuilder(build).del()
+  }
+
   #getFinalBuilder(build){ // 不是 build 就是 where
     return this.#getBaseBuilder(
       build && (
