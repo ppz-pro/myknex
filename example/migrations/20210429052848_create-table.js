@@ -4,18 +4,12 @@ exports.up = function(knex) {
       table.increments().primary()
       table.string('name')
       table.string('tel')
-
-      table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
-      table.timestamp('updatedAt', { precision: 6 }).defaultTo(knex.fn.now(6))
     })
     .createTable('pet', table => {
       table.increments().primary()
       table.string('name')
       table.enu('gender', ['male', 'female'])
       table.integer('owner').unsigned()
-
-      table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
-      table.timestamp('updatedAt', { precision: 6 }).defaultTo(knex.fn.now(6))
     })
 }
 

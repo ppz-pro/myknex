@@ -1,10 +1,8 @@
 module.exports = {
   development: {
-    client: 'mysql',
+    client: 'sqlite3',
     connection: {
-      database: 'knex',
-      user:     'gy',
-      password: 'password'
+      filename: './db.sqlite'
     }
   }
 }
