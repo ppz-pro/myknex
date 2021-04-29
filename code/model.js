@@ -22,6 +22,10 @@ class Model {
     return await this.#getFinalBuilder(build).del()
   }
 
+  async update(build, ...args){
+    return await this.#getFinalBuilder(build).update(...args)
+  }
+
   #getFinalBuilder(build){ // 不是 build 就是 where
     return this.#getBaseBuilder(
       build && (
