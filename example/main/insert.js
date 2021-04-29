@@ -7,9 +7,9 @@ async function main(){
   const result = await userModel.insert([{
     name: 'lun',
     tel: 'lun phone'
-  },{
-    name: 'lun',
-    tel: 'lun phone'
+  }, {
+    name: 'pan',
+    tel: 'pan phone'
   }])
   console.log(result)
 }
