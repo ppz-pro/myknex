@@ -1,3 +1,4 @@
-module.exports = function(){
-  console.log('试一下 myknex 这个名字可不可以用')
+module.exports = {
+  setKnex: require('./knex').set,
+  Model: require('./model')
 }
