@@ -13,7 +13,6 @@ exports.up = function(knex) {
       table.string('name')
       table.enu('gender', ['male', 'female'])
       table.integer('owner').unsigned()
-      table.foreign('owner').references('user.id')
 
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('updatedAt', { precision: 6 }).defaultTo(knex.fn.now(6))
