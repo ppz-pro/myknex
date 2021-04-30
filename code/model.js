@@ -1,10 +1,14 @@
 const getKnex = require('./knex').get
 const { isNumber } = require('./util')
 
+const knife = global.MyKnexKnife && global.MyKnexKnife.Express
+
 class Model {
   #tableName
   constructor(tableName){
     this.#tableName = tableName
+    if(knife)
+      knife['/' + tableName] = this
   }
 
   #getBaseBuilder(build) {
