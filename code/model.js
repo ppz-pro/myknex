@@ -30,6 +30,14 @@ class Model {
     return await this.#getFinalBuilder(build).update(...args)
   }
 
+  async upsert(record, ...args) {
+    return await record.id
+      ? this.update({
+        id: record.id
+      }, record, ...args)
+      : this.insert(...arguments)
+  }
+
   #getFinalBuilder(build){ // 不是 build 就是 where
     return this.getBaseBuilder(
       build && (
