@@ -200,6 +200,28 @@ update 的第一个参数跟 fetch 一样：
 上面的例子，把 name 为“小明”的 user，改为 ```name: "大明"```  
 你可以通过上面的 fetch 例子验证一下
 
+##### upsert
+更新与新增，在大多数情况下，操作非常类似  
+upsert 方法的作用在于，可以接收一个记录（record）  
+如果 record 有 id 属性，则按 id 更新一条记录  
+否则新增一条记录  
+``` js
+require('./init')
+const { Model } = require('myknex') // myknex 核心
+
+const userModel = new Model('user')
+
+async function main(){
+  const result = await userModel.upsert({
+    // id: 1, // 如果传入 id，则更新 id 为 1 的记录的 name 为 ppz；否则，新增一条 name 为 ppz 的记录
+    name: 'ppz'
+  })
+  console.log(result)
+}
+
+main()
+```
+
 ##### delete
 ``` js
 require('./init')
@@ -278,4 +300,4 @@ await userModel.populate(userList, 'petList')
 于是，所有用户和他们的宠物信息都取出来了
 
 # todo
-+ updateAndFetch 更新后返回所更新的数据
++ count
