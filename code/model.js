@@ -11,7 +11,7 @@ class Model {
       knife['/' + tableName] = this
   }
 
-  #getBaseBuilder(build) {
+  getBaseBuilder(build) {
     const builder = getKnex()(this.#tableName)
     if(build)
       build(builder)
@@ -19,7 +19,7 @@ class Model {
   }
 
   async insert() {
-    return await this.#getBaseBuilder().insert(...arguments)
+    return await this.getBaseBuilder().insert(...arguments)
   }
 
   async del(build){
@@ -31,7 +31,7 @@ class Model {
   }
 
   #getFinalBuilder(build){ // 不是 build 就是 where
-    return this.#getBaseBuilder(
+    return this.getBaseBuilder(
       build && (
         build instanceof Function
           ? build
