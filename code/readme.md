@@ -300,6 +300,6 @@ await userModel.populate(userList, 'petList')
 于是，所有用户和他们的宠物信息都取出来了
 
 ##### 其他
-+ [count](https://github.com/daGaiGuanYu/myknex/blob/master/example/count.js)
-+ [increment](https://github.com/daGaiGuanYu/myknex/blob/master/example/increment.js)
-+ [decrement](https://github.com/daGaiGuanYu/myknex/blob/master/example/decrement.js)
++ [count](https://github.com/daGaiGuanYu/myknex/blob/master/example/main/count.js)
++ [increment](https://github.com/daGaiGuanYu/myknex/blob/master/example/main/increment.js)
++ [decrement](https://github.com/daGaiGuanYu/myknex/blob/master/example/main/decrement.js)
