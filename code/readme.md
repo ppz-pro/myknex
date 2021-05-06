@@ -299,5 +299,7 @@ await userModel.populate(userList, 'petList')
 ```
 于是，所有用户和他们的宠物信息都取出来了
 
-# todo
-+ count
+##### 其他
++ [count]()
++ [increment]()
++ [decrement]()

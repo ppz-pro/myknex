@@ -52,6 +52,14 @@ class Model {
     return await this.#getFinalBuilder(build)
   }
 
+  async count(build, target){
+    const builder = this.#getFinalBuilder(build)
+    if(!target)
+      target = 'id'
+    const [result] = await builder.count(target)
+    return Object.values(result)[0]
+  }
+
   async fetchOne(build){
     if(isNumber(build))
       build = {
