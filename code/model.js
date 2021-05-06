@@ -18,16 +18,26 @@ class Model {
     return builder
   }
 
+  getBuilder(build){ // 不是 build 就是 where
+    return this.getBaseBuilder(
+      build && (
+        build instanceof Function
+          ? build
+          : builder => builder.where(build)
+      )
+    )
+  }
+
   async insert() {
     return await this.getBaseBuilder().insert(...arguments)
   }
 
   async del(build){
-    return await this.#getFinalBuilder(build).del()
+    return await this.getBuilder(build).del()
   }
 
   async update(build, ...args){
-    return await this.#getFinalBuilder(build).update(...args)
+    return await this.getBuilder(build).update(...args)
   }
 
   async upsert(record, ...args) {
@@ -38,22 +48,12 @@ class Model {
       : this.insert(...arguments)
   }
 
-  #getFinalBuilder(build){ // 不是 build 就是 where
-    return this.getBaseBuilder(
-      build && (
-        build instanceof Function
-          ? build
-          : builder => builder.where(build)
-      )
-    )
-  }
-
   async fetch(build){
-    return await this.#getFinalBuilder(build)
+    return await this.getBuilder(build)
   }
 
   async count(build, target){
-    const builder = this.#getFinalBuilder(build)
+    const builder = this.getBuilder(build)
     if(!target)
       target = 'id'
     const [result] = await builder.count(target)
@@ -65,7 +65,7 @@ class Model {
       build = {
         id: build
       }
-    const builder = this.#getFinalBuilder(build)
+    const builder = this.getBuilder(build)
     builder.limit(1)
     const list = await builder
     return list[0]
