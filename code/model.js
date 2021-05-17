@@ -8,7 +8,7 @@ class Model {
   constructor(tableName){
     this.#tableName = tableName
     if(knife)
-      knife['/' + tableName] = this
+      knife[tableName] = this
   }
 
   getBaseBuilder(build) {
