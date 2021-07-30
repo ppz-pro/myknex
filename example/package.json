@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "knex": "^0.95.4",
-    "myknex": "^0.1.1",
+    "myknex": "file:../myknex-0.2.2.tgz",
     "sqlite3": "^5.0.2"
   }
 }

@@ -1,11 +1,8 @@
-require('./init')
-const { Model } = require('myknex') // myknex 核心
-
-const userModel = new Model('user')
+const { User } = require('./init')
 
 async function main(){
-  const result = await userModel.fetch({
-    id: 1
+  const result = await User.fetch({
+    id: 8
   })
   console.log(result)
 }

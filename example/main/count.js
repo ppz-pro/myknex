@@ -1,10 +1,7 @@
-require('./init')
-const { Model } = require('myknex') // myknex 核心
-
-const userModel = new Model('user')
+const { User } = require('./init')
 
 async function main(){
-  const result = await userModel.count()
+  const result = await User.count()
   console.log(result)
 }
 

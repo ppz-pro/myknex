@@ -1,3 +1,19 @@
 const dbConfg = require('../knexfile').development // 数据库配置
-const knex = require('knex')(dbConfg) // 实例化 Knex
-require('myknex').setKnex(knex) // 把 Knex 实例交给 myknex
+const MyKnex = require('myknex')
+
+const db = new MyKnex(dbConfg)
+
+const user = exports.User = db.setTable('user')
+const pet = exports.Pet = db.setTable('pet')
+
+MyKnex.join({
+  table: user,
+  populatedAs: 'own',
+  joinKey: 'id',
+  type: 'one'
+}, {
+  table: pet,
+  joinKey: 'owner',
+  type: 'many',
+  populatedAs: 'pets'
+})

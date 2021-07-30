@@ -1,8 +1,8 @@
 {
   "name": "myknex",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "exports.js",
   "scripts": {
   },
   "keywords": [
