@@ -21,7 +21,8 @@ async function main(){
   })
   
   const user = await User.fetchOne() // 取出一个 user
-  await (await user.populate('pets')).populate('own')
+  const pets = await user.populate('pets')
+  pets.populate('own')
   console.log(JSON.parse(JSON.stringify(user)))
 }
 

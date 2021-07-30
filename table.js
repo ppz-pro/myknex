@@ -7,21 +7,25 @@ module.exports = class {
     this.dev = config
   }
 
-  async fetch(build) {
-    const ret = await this.getBuilder(build)
-    return new PopulatableData(ret, this)
-  }
-
-  async fetchOne(build) {
-    const ret = await this.getBuilder(build).limit(1)
-    return new PopulatableData(ret[0], this)
-  }
-
-  async fetchByPK(pk) {
-    const ret = await this.fetchOne({
-      [this.dev.PKName]: pk
+  fetch(build) {
+    return new PopulatableData({
+      build,
+      table: this
     })
-    return new PopulatableData(ret, this)
+  }
+
+  fetchOne(build) {
+    return new PopulatableData({
+      build,
+      table: this,
+      one: true
+    })
+  }
+
+  fetchByPK(pk) {
+    return this.fetchOne({
+      [pk]: p
+    })
   }
 
   async count(build, target = this.dev.PKName){
