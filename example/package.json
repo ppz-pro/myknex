@@ -1,17 +1,7 @@
 {
-  "name": "test-myknex",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "knex": "^0.95.4",
-    "myknex": "file:../myknex-0.2.2.tgz",
-    "sqlite3": "^5.0.2"
+    "knex": "^0.95.8",
+    "myknex": "file:../myknex-1.0.0.tgz",
+    "mysql2": "^2.2.5"
   }
 }

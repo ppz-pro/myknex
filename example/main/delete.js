@@ -2,7 +2,7 @@ const { User } = require('./init')
 
 async function main(){
   const result = await User.del({
-    name: '大明'
+    id: 4
   })
   console.log(result)
 }

@@ -16,12 +16,13 @@ const type = ['many', 'one']
 function checkJoin(table) {
   if(!(table.table instanceof Table))
     throw Error('table 必须是 MyKnex.Table 或其子类型，即 "knex/table.js"')
-  if(notString(table.joinKey))
-    throw Error('joinKey 必须是字符串')
-  if(notString(table.populatedAs))
-    throw Error('populatedAs 必须是字符串')
+  if(table.joinKey && notString(table.joinKey))
+    throw Error('joinKey 可以不填，但必须是字符串')
+  if(table.populatedAs && notString(table.populatedAs))
+    throw Error('populatedAs 可以不填，但必须是字符串')
+  table.type = table.type || 'many'
   if(type.indexOf(table.type) == -1)
-    throw Error('type 必须是 many 或 one')
+    throw Error('type 必须是 many 或 one，默认为 many')
 }
 
 function join(table1, table2) {

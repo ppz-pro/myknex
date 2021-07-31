@@ -1,4 +1,4 @@
-const PopulatableData = require('./populatable-data')
+const RootPopulation = require('./population').RootPopulation
 
 module.exports = class {
   /** @param {import('./types/table-config')} config */
@@ -8,23 +8,16 @@ module.exports = class {
   }
 
   fetch(build) {
-    return new PopulatableData({
-      build,
-      table: this
-    })
+    return new RootPopulation(this, build, true)
   }
 
   fetchOne(build) {
-    return new PopulatableData({
-      build,
-      table: this,
-      one: true
-    })
+    return new RootPopulation(this, build)
   }
 
   fetchByPK(pk) {
-    return this.fetchOne({
-      [pk]: p
+    return new RootPopulation(this, {
+      [this.dev.PKName]: pk
     })
   }
 
