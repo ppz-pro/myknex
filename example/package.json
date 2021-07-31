@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "knex": "^0.95.8",
-    "myknex": "file:../myknex-1.0.0.tgz",
+    "myknex": "^1.0.0",
     "mysql2": "^2.2.5"
   }
 }
